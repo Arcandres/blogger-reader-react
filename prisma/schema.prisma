@@ -1,0 +1,25 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Blog {
+  id          String   @id
+  kind        String
+  name        String
+  description String
+  published   DateTime
+  updated     DateTime
+  url         String   @unique
+  selfLink    String
+  postsCount  Int
+  postsUrl    String
+  pagesCount  Int
+  pagesUrl    String
+  language    String
+  country     String
+}
