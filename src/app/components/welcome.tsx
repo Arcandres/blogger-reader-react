@@ -22,7 +22,7 @@ export default async function Welcome() {
         <p>A simple app for reading blogspot Blogs.</p>
       </header>
       <BlogForm />
-      {blogs && (
+      {blogs > 0 && (
         <Link className='p-5 hover:underline border-b-main' href={'/blogs'}>
           Go to blogs
         </Link>
