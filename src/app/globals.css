@@ -24,6 +24,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: var(--background);
+  font: Inter, Ubuntu, sans-serif;
 }
 
 .post p {
