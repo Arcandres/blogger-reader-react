@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import BlogView from '../components/blog-view';
 import Header from '../components/header';
+import Footer from '../components/footer';
 import { redirect } from 'next/navigation';
 
 const prisma = new PrismaClient();
@@ -20,6 +21,7 @@ export default async function Blogs() {
           ))}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

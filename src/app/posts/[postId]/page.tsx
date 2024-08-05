@@ -1,5 +1,6 @@
 import Header from '@/app/components/header';
 import { getPost } from '../../lib/bloggerService';
+import Footer from '@/app/components/footer';
 
 type PostParams = {
   searchParams: {
@@ -19,12 +20,15 @@ export default async function page({ searchParams, params }: PostParams) {
   if (!post) return 'Post not found';
 
   return (
-    <main>
-      <Header>{post.title}</Header>
-      <article
-        className='post bg-main rounded-md p-4 m-4'
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-    </main>
+    <>
+      <main>
+        <Header>{post.title}</Header>
+        <article
+          className='post bg-main rounded-md p-4 m-4'
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
