@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { TPost } from '../lib/types';
+import { ArrowBottomRightIcon, ReaderIcon } from '@radix-ui/react-icons';
 
 type PostProp = {
   post: TPost;
@@ -22,7 +23,7 @@ export default function PostView({ post }: PostProp) {
 
   return (
     <article key={post.id} className='bg-post p-4 rounded-lg'>
-      <h2 className='text-xs font-bold text-white'>{post.title}</h2>
+      <h2 className='text-sm font-bold text-white'>{post.title}</h2>
       <div className='flex gap-4 pt-4'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -51,9 +52,9 @@ export default function PostView({ post }: PostProp) {
                 blogId: post.blog.id,
               },
             }}
-            className='self-end font-black'
+            className='flex items-center gap-x-1 self-end font-black'
           >
-            Read
+            Read <ArrowBottomRightIcon />
           </Link>
         </div>
       </div>

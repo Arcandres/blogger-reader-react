@@ -1,6 +1,7 @@
 import { Blog } from '@prisma/client';
 import Link from 'next/link';
 import BlogViewTitle from '@/app/components/blog-view-title';
+import { ArrowBottomRightIcon } from '@radix-ui/react-icons';
 
 type BlogViewProps = {
   blog: Blog;
@@ -23,9 +24,9 @@ export default function BlogView({ blog }: BlogViewProps) {
         </small>
         <Link
           href={`/blog/${blog.id}`}
-          className='text-xs text-white font-bold hover:text-background-radial transition-colors duration-100'
+          className='flex items-center gap-x-1 text-xs text-white font-bold hover:text-background-radial transition-colors duration-100'
         >
-          Read
+          Read <ArrowBottomRightIcon />
         </Link>
       </div>
     </article>
