@@ -10,6 +10,7 @@ export default async function Welcome() {
           alt='Blogger Reader Logo'
           width={80}
           height={80}
+          priority={true}
           className='rounded-2xl bg-orange-300'
         />
         <h1 className='text-3xl'>Blogger Reader</h1>
