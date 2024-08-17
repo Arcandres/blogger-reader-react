@@ -22,7 +22,10 @@ export default function PostView({ post }: PostProp) {
   const average = Math.round(content.length / 200);
 
   return (
-    <article key={post.id} className='bg-post p-4 rounded-lg'>
+    <article
+      key={post.id}
+      className='bg-post p-4 rounded-lg border border-[#232f40]'
+    >
       <h2 className='text-sm font-bold text-white'>{post.title}</h2>
       <div className='flex gap-4 pt-4'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
