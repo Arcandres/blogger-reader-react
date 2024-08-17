@@ -14,6 +14,7 @@ export default function BlogForm() {
         className='text-sm p-4 w-full rounded-lg bg-transparent border-2 border-main outline-none'
         placeholder='https://blog.blogspot.com/'
         required
+        type='url'
       />
       <div className='flex items-end gap-x-4'>
         <button className='flex items-center gap-x-1 bg-main py-3 px-5 rounded-lg font-bold'>
