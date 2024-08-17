@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/db';
 import BlogView from '../components/blog-view';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { redirect } from 'next/navigation';
-
-const prisma = new PrismaClient();
 
 export default async function Blogs() {
   const blogs = await prisma.blog.findMany();

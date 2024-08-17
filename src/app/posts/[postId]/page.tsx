@@ -1,5 +1,5 @@
 import Header from '@/app/components/header';
-import { getBlog, getBlogById, getPost } from '../../lib/bloggerService';
+import { getBlogById, getPost } from '../../lib/bloggerService';
 import Footer from '@/app/components/footer';
 import Breadcrumb from '@/app/components/breadcrumb';
 

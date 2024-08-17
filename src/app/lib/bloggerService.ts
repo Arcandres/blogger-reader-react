@@ -1,7 +1,7 @@
 'use server';
 
 import axios from 'axios';
-import { TBlog, TPost, TPosts, TSinglePost } from './types';
+import { TBlog, TPosts, TSinglePost } from './types';
 
 const bloggerService = axios.create({
   baseURL: 'https://www.googleapis.com/blogger/v3',

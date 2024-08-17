@@ -1,11 +1,9 @@
 'use server';
 
+import prisma from '@/app/lib/db';
 import { getBlog } from '@/app/lib/bloggerService';
-import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
-
-const prisma = new PrismaClient();
 
 export async function createBlog(formData: FormData) {
   if (!formData.get('BlogUrl')) return;
