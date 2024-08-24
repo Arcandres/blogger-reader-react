@@ -5,7 +5,11 @@ import Footer from '../components/footer';
 import { redirect } from 'next/navigation';
 
 export default async function Blogs() {
-  const blogs = await prisma.blog.findMany();
+  const blogs = await prisma.blog.findMany({
+    orderBy: {
+      name: 'asc',
+    },
+  });
 
   if (blogs.length <= 0) redirect('/');
 
