@@ -6,10 +6,17 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function createBlog(formData: FormData) {
-  if (!formData.get('BlogUrl')) return;
+  const blogUrl = String(formData.get('BlogUrl'));
+  const blogDB = await prisma.blog.findUnique({
+    where: {
+      url: `${blogUrl.replace('https', 'http')}/`, // solve https://spanishblogsdreamteam.blogspot.com/
+    },
+  });
+
+  if (!!blogDB) redirect('/blogs');
 
   try {
-    const { data } = await getBlog(String(formData.get('BlogUrl')));
+    const { data } = await getBlog(blogUrl);
 
     const restructuredData = {
       kind: data.kind,
@@ -35,6 +42,6 @@ export async function createBlog(formData: FormData) {
     revalidatePath(`/blogs`);
     redirect(`/blogs`);
   } catch {
-    console.log('Blog not found or already added');
+    console.error('Blog not found or already added');
   }
 }
