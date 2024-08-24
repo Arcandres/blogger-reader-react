@@ -1,4 +1,4 @@
-import { createBlog } from '@/actions/actions';
+import { createBlog } from '@/actions/createBlog';
 import { PlusCircledIcon, ReaderIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 
