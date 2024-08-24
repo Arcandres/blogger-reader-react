@@ -1,5 +1,5 @@
-import { UpdateIcon } from '@radix-ui/react-icons';
-import DeleteBlog from './delete-blog';
+import BlogAction from './blog-action';
+import { BlogActions } from '../lib/constants';
 
 type BlogViewTitleProps = {
   blogId: string;
@@ -24,10 +24,8 @@ export default function BlogViewTitle({
     >
       {blogTitle}
       <span className='flex gap-x-1'>
-        <span className='text-cyan-400 cursor-pointer'>
-          <UpdateIcon />
-        </span>
-        <DeleteBlog blogId={blogId} />
+        <BlogAction action={BlogActions.UPDATE} blogId={blogId} />
+        <BlogAction action={BlogActions.DELETE} blogId={blogId} />
       </span>
     </h2>
   );
