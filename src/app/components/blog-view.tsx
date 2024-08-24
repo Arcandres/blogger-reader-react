@@ -10,7 +10,11 @@ type BlogViewProps = {
 export default function BlogView({ blog }: BlogViewProps) {
   return (
     <article className='flex gap-y-4 flex-col w-full border border-[#232f40] max-w-[460px] p-4 rounded-lg mx-auto'>
-      <BlogViewTitle blogTitle={blog.name} blogUrl={blog.url} />
+      <BlogViewTitle
+        blogId={blog.id}
+        blogTitle={blog.name}
+        blogUrl={blog.url}
+      />
       <p className='text-white/80'>
         {blog.description ? blog.description : '-- No description --'}
       </p>
