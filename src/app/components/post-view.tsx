@@ -24,7 +24,7 @@ export default function PostView({ post }: PostProp) {
   return (
     <article
       key={post.id}
-      className='bg-post p-4 rounded-lg border border-[#232f40]'
+      className='card p-4 rounded-lg border border-[#232f40]'
     >
       <h2 className='text-sm font-bold text-white'>{post.title}</h2>
       <div className='flex gap-4 pt-4'>

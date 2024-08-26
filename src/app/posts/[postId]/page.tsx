@@ -31,7 +31,7 @@ export default async function page({ searchParams, params }: PostParams) {
         />
         <Header>{post.title}</Header>
         <article
-          className='post bg-main rounded-md p-4 m-4 border border-[#232f40]'
+          className='post rounded-md p-4 m-4'
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </main>

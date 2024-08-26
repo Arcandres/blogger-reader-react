@@ -9,14 +9,14 @@ type BlogViewProps = {
 
 export default function BlogView({ blog }: BlogViewProps) {
   return (
-    <article className='flex gap-y-4 flex-col w-full border border-[#232f40] max-w-[460px] p-4 rounded-lg mx-auto'>
+    <article className='card flex gap-y-4 flex-col w-full border border-[#232f40] max-w-[460px] p-4 rounded-lg mx-auto'>
       <BlogViewTitle
         blogId={blog.id}
         blogTitle={blog.name}
         blogUrl={blog.url}
       />
       <p className='text-white/80'>
-        {blog.description ? blog.description : '-- No description --'}
+        {blog.description ? blog.description : <p>No description provided</p>}
       </p>
       <div className='flex justify-between'>
         <small className='flex gap-x-3'>
