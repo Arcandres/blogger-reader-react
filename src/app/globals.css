@@ -26,7 +26,8 @@ body {
   background-color: var(--background);
   font: Inter, Ubuntu, sans-serif;
 }
-article {
+
+.card {
   background-image: radial-gradient(
     circle,
     rgb(28, 33, 47) 0%,
@@ -47,6 +48,10 @@ article {
   border-radius: 0.5rem;
   display: flex;
   margin: 3rem auto;
+}
+
+.post > img {
+  margin-top: 0;
 }
 
 .post table,
