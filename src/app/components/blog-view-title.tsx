@@ -1,5 +1,6 @@
 import BlogAction from './blog-action';
 import { BlogActions } from '../lib/constants';
+import Link from 'next/link';
 
 type BlogViewTitleProps = {
   blogId: string;
@@ -22,7 +23,7 @@ export default function BlogViewTitle({
         paddingLeft: '1.4rem',
       }}
     >
-      {blogTitle}
+      <Link href={`/blog/${blogId}`}>{blogTitle}</Link>
       <span className='flex gap-x-1'>
         <BlogAction action={BlogActions.UPDATE} blogId={blogId} />
         <BlogAction action={BlogActions.DELETE} blogId={blogId} />
