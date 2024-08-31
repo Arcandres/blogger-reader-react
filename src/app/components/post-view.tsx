@@ -26,7 +26,18 @@ export default function PostView({ post }: PostProp) {
       key={post.id}
       className='card p-4 rounded-lg border border-[#232f40]'
     >
-      <h2 className='text-sm font-bold text-white'>{post.title}</h2>
+      <h2 className='text-sm font-bold text-white'>
+        <Link
+          href={{
+            pathname: `/posts/${post.id}`,
+            query: {
+              blogId: post.blog.id,
+            },
+          }}
+        >
+          {post.title}
+        </Link>
+      </h2>
       <div className='flex gap-4 pt-4'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
