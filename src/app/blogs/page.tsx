@@ -2,26 +2,35 @@ import prisma from '../lib/db';
 import BlogView from '../components/blog-view';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import { redirect } from 'next/navigation';
+import BlogNotify from '../components/blog-notify';
 
-export default async function Blogs() {
+interface SearchParamsProps {
+  searchParams: { created: 'true' | 'false' };
+}
+
+export default async function Blogs({ searchParams }: SearchParamsProps) {
+  const { created } = searchParams;
+
   const blogs = await prisma.blog.findMany({
     orderBy: {
       name: 'asc',
     },
   });
 
-  if (blogs.length <= 0) redirect('/');
-
   return (
     <>
       <Header>Blogs</Header>
       <main>
         <div className='flex flex-col gap-4 p-4'>
-          {blogs.map((blog) => (
-            <BlogView key={blog.id} blog={blog} />
-          ))}
+          {blogs.length > 0 &&
+            blogs.map((blog) => <BlogView key={blog.id} blog={blog} />)}
+          {blogs.length <= 0 && (
+            <p className='text-center'>
+              Add a blog first, before trying to read it
+            </p>
+          )}
         </div>
+        <BlogNotify text='Blog added succesfully!' created={created} />
       </main>
       <Footer />
     </>
