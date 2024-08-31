@@ -29,7 +29,7 @@ export default function PostView({ post }: PostProp) {
       <h2 className='text-sm font-bold text-white'>
         <Link
           href={{
-            pathname: `/posts/${post.id}`,
+            pathname: `/post/${post.id}`,
             query: {
               blogId: post.blog.id,
             },
