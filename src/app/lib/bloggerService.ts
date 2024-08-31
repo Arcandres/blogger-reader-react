@@ -16,11 +16,6 @@ export const getBlogById = async (blogId: string): Promise<TBlog> =>
     .then((data) => data.json())
     .then((blog) => ({ data: blog }));
 
-export const getPosts = async (blogID: string): Promise<TPosts> =>
-  fetch(`${bloggerService}/blogs/${blogID}/posts?key=${process.env.API_KEY}`)
-    .then((data) => data.json())
-    .then((blog) => ({ data: blog }));
-
 export const getPost = async (
   blogId: string,
   postId: string
@@ -30,3 +25,18 @@ export const getPost = async (
   )
     .then((data) => data.json())
     .then((post) => ({ data: post }));
+
+export const getPosts = async (blogID: string): Promise<TPosts> =>
+  fetch(`${bloggerService}/blogs/${blogID}/posts?key=${process.env.API_KEY}`)
+    .then((data) => data.json())
+    .then((blog) => ({ data: blog }));
+
+export const getPostsByToken = async (
+  blogId: string,
+  token: string
+): Promise<TPosts> =>
+  fetch(
+    `${bloggerService}/blogs/${blogId}/posts?key=${process.env.API_KEY}&pageToken=${token}`
+  )
+    .then((data) => data.json())
+    .then((posts) => ({ data: posts }));
