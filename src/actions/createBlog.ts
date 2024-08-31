@@ -13,35 +13,41 @@ export async function createBlog(formData: FormData) {
     },
   });
 
-  if (!!blogDB) redirect('/blogs');
+  // Let's skip to /blogs in case the blog is already added
+  if (blogDB != null) return redirect('/blogs');
 
-  try {
-    const { data } = await getBlog(blogUrl);
+  const { data } = await getBlog(blogUrl);
 
-    const restructuredData = {
-      kind: data.kind,
-      id: data.id,
-      name: data.name,
-      description: data.description,
-      published: new Date(data.published),
-      updated: new Date(data.updated),
-      url: data.url,
-      selfLink: data.selfLink,
-      postsCount: data.posts.totalItems,
-      postsUrl: data.posts.selfLink,
-      pagesCount: data.pages.totalItems,
-      pagesUrl: data.pages.selfLink,
-      language: data.locale.language,
-      country: data.locale.country,
-    };
+  const restructuredData = {
+    kind: data.kind,
+    id: data.id,
+    name: data.name,
+    description: data.description,
+    published: new Date(data.published),
+    updated: new Date(data.updated),
+    url: data.url,
+    selfLink: data.selfLink,
+    postsCount: data.posts?.totalItems,
+    postsUrl: data.posts?.selfLink,
+    pagesCount: data.pages?.totalItems,
+    pagesUrl: data.pages?.selfLink,
+    language: data.locale?.language,
+    country: data.locale?.country,
+  };
 
-    await prisma.blog.create({
-      data: restructuredData,
-    });
-
-    revalidatePath(`/blogs`);
-    redirect(`/blogs`);
-  } catch {
-    console.error('Blog not found or already added');
+  // if id not found, means the blog doesn't exist on Blogger database
+  if (!restructuredData.id) {
+    return redirect(`/?created=false`);
   }
+
+  await prisma.blog.upsert({
+    where: {
+      id: restructuredData.id,
+    },
+    update: {},
+    create: restructuredData,
+  });
+
+  revalidatePath(`/blogs`);
+  redirect(`/blogs/?created=true`);
 }
