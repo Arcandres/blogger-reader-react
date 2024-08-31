@@ -1,5 +1,6 @@
 'use client';
 
+import { HomeIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -17,9 +18,15 @@ export default function Breadcrumb({
   const pathname = usePathname();
   return (
     <nav className='p-4 text-xs max-w-[460px] md:max-w-full m-auto w-full'>
-      <ul className='flex gap-x-4'>
+      <ul className='flex gap-3'>
         {pathname.includes('blog') && (
-          <>
+          <ul className='flex items-center gap-x-4'>
+            <li>
+              <Link href={'/'}>
+                <HomeIcon />
+              </Link>
+            </li>
+            /
             <li>
               <Link href={'/blogs'}>Blogs</Link>
             </li>
@@ -27,10 +34,16 @@ export default function Breadcrumb({
             <li>
               <span>{blogTitle}</span>
             </li>
-          </>
+          </ul>
         )}
         {pathname.includes('posts') && (
-          <>
+          <ul className='flex items-center gap-3'>
+            <li>
+              <Link href={'/'}>
+                <HomeIcon />
+              </Link>
+            </li>
+            /
             <li>
               <Link href={'/blogs'}>Blogs</Link>
             </li>
@@ -42,7 +55,7 @@ export default function Breadcrumb({
             <li>
               <span>{postTitle}</span>
             </li>
-          </>
+          </ul>
         )}
       </ul>
     </nav>
