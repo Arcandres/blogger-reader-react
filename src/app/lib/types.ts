@@ -26,7 +26,7 @@ export type TBlog = {
 export type TPosts = {
   data: {
     kind: string;
-    nextPageToken: string;
+    nextPageToken?: string;
     items: TPost[];
   };
 };
