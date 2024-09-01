@@ -61,7 +61,7 @@ export default function PostView({ post }: PostProp) {
           </div>
           <Link
             href={{
-              pathname: `/posts/${post.id}`,
+              pathname: `/post/${post.id}`,
               query: {
                 blogId: post.blog.id,
               },
