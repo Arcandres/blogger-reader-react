@@ -61,7 +61,7 @@ export default async function Blog({ params }: BlogParams) {
   );
 }
 
-async function PreviousPosts({ blogId, nextPageToken }) {
+async function PreviousPosts({ blogId, nextPageToken }: any) {
   const { data: posts } = await getPostsByToken(blogId, nextPageToken);
 
   return (
