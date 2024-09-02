@@ -2,10 +2,11 @@ import Breadcrumb from '@/app/components/breadcrumb';
 import Footer from '@/app/components/footer';
 import Header from '@/app/components/header';
 import PostView from '@/app/components/post-view';
-import { getPosts } from '@/app/lib/bloggerService';
+import { getPosts, getPostsByToken } from '@/app/lib/bloggerService';
 import { TPost } from '@/app/lib/types';
 import { PrismaClient } from '@prisma/client';
-import { notFound } from 'next/navigation';
+import { TrackNextIcon, TrackPreviousIcon } from '@radix-ui/react-icons';
+import { redirect } from 'next/navigation';
 
 type BlogParams = {
   params: {
@@ -24,9 +25,12 @@ export default async function Blog({ params }: BlogParams) {
     },
   });
 
-  if (!blog) return notFound();
+  if (!blog) redirect('/');
 
   const { data: blogContent } = await getPosts(blogId);
+
+  if (blogContent.nextPageToken) {
+  }
 
   return (
     <>
@@ -38,8 +42,31 @@ export default async function Blog({ params }: BlogParams) {
             <PostView key={post.id} post={post} />
           ))}
         </section>
+        <footer className='flex justify-between'>
+          <div className='flex items-center gap-1 cursor-pointer p-2 hover:text-white transition'>
+            {blogContent.nextPageToken && (
+              <PreviousPosts
+                nextPageToken={blogContent.nextPageToken}
+                blogId={blogId}
+              />
+            )}
+          </div>
+          {/* <div className='flex items-center gap-1 cursor-pointer p-2 hover:text-white transition'>
+            Next <TrackNextIcon />
+          </div> */}
+        </footer>
       </main>
       <Footer />
+    </>
+  );
+}
+
+async function PreviousPosts({ blogId, nextPageToken }) {
+  const { data: posts } = await getPostsByToken(blogId, nextPageToken);
+
+  return (
+    <>
+      <TrackPreviousIcon /> Previous
     </>
   );
 }
