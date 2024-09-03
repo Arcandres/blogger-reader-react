@@ -13,7 +13,7 @@ export default function BlogViewTitle({
   blogTitle,
   blogUrl,
 }: BlogViewTitleProps) {
-  const parsedUrl = blogUrl.replace('http://', '');
+  const parsedUrl = blogUrl.replace('http://', 'https://');
 
   return (
     <h2
