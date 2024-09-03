@@ -17,7 +17,7 @@ export default function BlogViewTitle({
 
   return (
     <h2
-      className=' flex gap-1 items-center justify-between font-bold text-white'
+      className=' flex gap-1 items-center justify-between font-bold text-white capitalize'
       style={{
         background: `url("//www.google.com/s2/favicons?domain=${parsedUrl}") no-repeat 1px center`,
         paddingLeft: '1.4rem',
