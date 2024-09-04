@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { TPost } from '../lib/types';
-import { ArrowBottomRightIcon, ReaderIcon } from '@radix-ui/react-icons';
+import { ArrowBottomRightIcon } from '@radix-ui/react-icons';
 
 type PostProp = {
   post: TPost;
