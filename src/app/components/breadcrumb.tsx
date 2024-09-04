@@ -36,7 +36,7 @@ export default function Breadcrumb({
             </li>
           </ul>
         )}
-        {pathname.includes('posts') && (
+        {pathname.includes('post') && (
           <ul className='flex items-center gap-3'>
             <li>
               <Link href={'/'}>
