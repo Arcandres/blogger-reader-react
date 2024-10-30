@@ -1,11 +1,11 @@
 import Breadcrumb from '@/app/components/breadcrumb';
 import Footer from '@/app/components/footer';
 import Header from '@/app/components/header';
+import PostByToken from '@/app/components/post-by-token';
 import PostView from '@/app/components/post-view';
-import { getPosts, getPostsByToken } from '@/app/lib/bloggerService';
+import { getPosts } from '@/app/lib/bloggerService';
+import prisma from '@/app/lib/db';
 import { TPost } from '@/app/lib/types';
-import { PrismaClient } from '@prisma/client';
-import { TrackNextIcon, TrackPreviousIcon } from '@radix-ui/react-icons';
 import { redirect } from 'next/navigation';
 
 type BlogParams = {
@@ -13,8 +13,6 @@ type BlogParams = {
     blogId: string;
   };
 };
-
-const prisma = new PrismaClient();
 
 export default async function Blog({ params }: BlogParams) {
   const blogId = params.blogId;
@@ -29,9 +27,6 @@ export default async function Blog({ params }: BlogParams) {
 
   const { data: blogContent } = await getPosts(blogId);
 
-  if (blogContent.nextPageToken) {
-  }
-
   return (
     <>
       <main>
@@ -41,32 +36,15 @@ export default async function Blog({ params }: BlogParams) {
           {blogContent.items.map((post: TPost) => (
             <PostView key={post.id} post={post} />
           ))}
+          {blogContent.nextPageToken && (
+            <PostByToken
+              initialToken={blogContent.nextPageToken}
+              blogId={blogId}
+            />
+          )}
         </section>
-        <footer className='flex justify-between'>
-          <div className='flex items-center gap-1 cursor-pointer p-2 hover:text-white transition'>
-            {blogContent.nextPageToken && (
-              <PreviousPosts
-                nextPageToken={blogContent.nextPageToken}
-                blogId={blogId}
-              />
-            )}
-          </div>
-          {/* <div className='flex items-center gap-1 cursor-pointer p-2 hover:text-white transition'>
-            Next <TrackNextIcon />
-          </div> */}
-        </footer>
       </main>
       <Footer />
-    </>
-  );
-}
-
-async function PreviousPosts({ blogId, nextPageToken }: any) {
-  const { data: posts } = await getPostsByToken(blogId, nextPageToken);
-
-  return (
-    <>
-      <TrackPreviousIcon /> Previous
     </>
   );
 }

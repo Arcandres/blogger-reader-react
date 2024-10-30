@@ -13,7 +13,7 @@ type PostParams = {
   };
 };
 
-export default async function page({ searchParams, params }: PostParams) {
+export default async function Post({ searchParams, params }: PostParams) {
   const postId = params.postId;
   const blogId = searchParams.blogId;
 
