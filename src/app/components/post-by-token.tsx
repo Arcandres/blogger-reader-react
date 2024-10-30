@@ -11,7 +11,7 @@ type PageParams = {
 
 export default function PostByToken({ blogId, initialToken }: PageParams) {
   const [token, setToken] = useState(initialToken);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any>([]);
 
   const getPosts = async (blogId: string, token: string) => {
     const { data } = await getPostsByToken(blogId, token);
@@ -22,7 +22,7 @@ export default function PostByToken({ blogId, initialToken }: PageParams) {
   const handleClick = async () => {
     const blogContent = await getPosts(blogId, token);
     if (!blogContent.nextPageToken) return;
-    setPosts((prev) => [...prev, ...blogContent.items]);
+    setPosts((prev: any) => [...prev, ...blogContent.items]);
     setToken(blogContent.nextPageToken);
   };
 
