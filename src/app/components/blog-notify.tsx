@@ -19,7 +19,7 @@ export default function BlogNotify({ text, created }: BlogNotifyProps) {
         window.location.href = '/';
       }, 2500);
     }
-  }, []);
+  }, [created, text]);
 
   return (
     <ToastContainer
