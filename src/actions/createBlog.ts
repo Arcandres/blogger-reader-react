@@ -36,9 +36,7 @@ export async function createBlog(formData: FormData) {
   };
 
   // if id not found, means the blog doesn't exist on Blogger database
-  if (!restructuredData.id) {
-    return redirect(`/?created=false`);
-  }
+  if (!restructuredData.id) return redirect(`/?created=false`);
 
   await prisma.blog.upsert({
     where: {
