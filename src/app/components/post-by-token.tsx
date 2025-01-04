@@ -1,4 +1,5 @@
 'use client';
+
 import PostView from '@/app/components/post-view';
 import { getPostsByToken } from '@/app/lib/bloggerService';
 import { TPost } from '@/app/lib/types';
@@ -21,7 +22,10 @@ export default function PostByToken({ blogId, initialToken }: PageParams) {
 
   const handleClick = async () => {
     const blogContent = await getPosts(blogId, token);
-    if (!blogContent.nextPageToken) return;
+    if (!blogContent.nextPageToken || blogContent.nextPageToken === token) {
+      setToken('');
+      return;
+    }
     setPosts((prev: any) => [...prev, ...blogContent.items]);
     setToken(blogContent.nextPageToken);
   };
@@ -30,7 +34,7 @@ export default function PostByToken({ blogId, initialToken }: PageParams) {
     <>
       {posts.length > 0 &&
         posts.map((post: TPost) => <PostView key={post.id} post={post} />)}
-      <button onClick={handleClick}>Load more</button>
+      {token && <button onClick={handleClick}>Load more</button>}
     </>
   );
 }
