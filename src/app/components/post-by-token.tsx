@@ -12,7 +12,7 @@ type PageParams = {
 
 export default function PostByToken({ blogId, initialToken }: PageParams) {
   const [token, setToken] = useState(initialToken);
-  const [posts, setPosts] = useState<any>([]);
+  const [posts, setPosts] = useState<TPost[]>([]);
 
   const getPosts = async (blogId: string, token: string) => {
     const { data } = await getPostsByToken(blogId, token);
@@ -26,7 +26,7 @@ export default function PostByToken({ blogId, initialToken }: PageParams) {
       setToken('');
       return;
     }
-    setPosts((prev: any) => [...prev, ...blogContent.items]);
+    setPosts((prev) => [...prev, ...blogContent.items]);
     setToken(blogContent.nextPageToken);
   };
 
