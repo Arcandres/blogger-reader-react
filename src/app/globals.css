@@ -27,6 +27,11 @@ body {
   font: Inter, Ubuntu, sans-serif;
 }
 
+mark {
+  display: block;
+  margin: 1rem 0;
+}
+
 .card {
   background-image: radial-gradient(
     circle,
