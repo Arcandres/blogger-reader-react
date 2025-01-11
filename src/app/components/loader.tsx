@@ -21,6 +21,8 @@ export default function Loader({ spinner = false }: { spinner?: boolean }) {
       <Skeleton />
       <Skeleton />
       <Skeleton />
+      <Skeleton />
+      <Skeleton />
     </div>
   );
 }
